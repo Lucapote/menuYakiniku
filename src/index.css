@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+@theme {
+  --color-surface-variant: #f4f4f4;
+  --color-surface-container: #ececec;
+  --color-primary: #121212;
+  --color-secondary-container: #d10a37;
+  --color-background: #f8f7f5;
+  --color-on-background: #1a1a1a;
+  --color-tertiary: #d10a37;
+  --color-on-surface-variant: #4a4a4a;
+  --color-paper-white: #ffffff;
+  --color-outline-variant: #e0dad5;
+  --color-sumi-charcoal: #0a0a0a;
+
+  --font-display-lg: 'League Gothic', sans-serif;
+  --font-display-lg-mobile: 'League Gothic', sans-serif;
+  --font-headline-md: 'League Gothic', sans-serif;
+  --font-headline-sm: 'League Gothic', sans-serif;
+  --font-menu-item: 'League Gothic', sans-serif;
+  --font-body-lg: 'Barlow', sans-serif;
+  --font-body-md: 'Barlow', sans-serif;
+  --font-label-caps: 'Hanken Grotesk', sans-serif;
+  --font-sans: 'Barlow', sans-serif;
+
+  --spacing-grid-gutter: 24px;
+  --spacing-mobile-margin: 20px;
+  --spacing-section-gap: 80px;
+  --spacing-element-gap: 16px;
+  --spacing-grid-margin: 64px;
+}
+
+/* Custom Dotted Leader for Menu Items */
+.dotted-leader {
+  flex: 1 1 auto;
+  border-bottom: 2px dotted #d1d5db;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  margin-bottom: 0.35rem;
+  min-width: 1.5rem;
+}
+
+/* Custom Utilities */
+.font-label-caps {
+  font-family: 'Hanken Grotesk', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+.font-menu-item {
+  font-family: 'League Gothic', sans-serif;
+  letter-spacing: 0.05em;
+}
+
+.font-display-lg {
+  font-family: 'League Gothic', sans-serif;
+  letter-spacing: 0.06em;
+}
+
+.font-headline-sm {
+  font-family: 'League Gothic', sans-serif;
+  letter-spacing: 0.05em;
+}
+
+.font-body-md {
+  font-family: 'Barlow', sans-serif;
+}
+
+/* Smooth scroll for category navigation */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Hide scrollbar for category tabs on mobile */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
