@@ -30,16 +30,6 @@
   --spacing-grid-margin: 64px;
 }
 
-/* Custom Dotted Leader for Menu Items */
-.dotted-leader {
-  flex: 1 1 auto;
-  border-bottom: 2px dotted #d1d5db;
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
-  margin-bottom: 0.35rem;
-  min-width: 1.5rem;
-}
-
 /* Custom Utilities */
 .font-label-caps {
   font-family: 'Hanken Grotesk', sans-serif;

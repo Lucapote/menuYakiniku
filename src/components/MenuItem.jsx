@@ -10,27 +10,24 @@ export default function MenuItem({ name, price, description, badge }) {
 
   return (
     <div className="p-5 sm:p-6 bg-white border border-[#e0dad5] hover:border-tertiary/60 shadow-xs hover:shadow-md rounded-xl transition-all duration-300 group">
-      {/* 50/50 Grid Header Row */}
-      <div className="grid grid-cols-2 gap-2 sm:gap-4 items-center mb-2 w-full">
-        {/* Left 50%: Title & Badge */}
-        <div className="flex items-center gap-2 max-w-full flex-wrap sm:flex-nowrap">
+      {/* Header Row: Title on Top, Badge Below, Price on Right */}
+      <div className="flex justify-between items-start gap-4 mb-2 w-full">
+        {/* Left Column: Title (h4) on top, Badge (span) below */}
+        <div className="flex flex-col items-start gap-1 max-w-full">
           <h4 className="font-menu-item text-xl sm:text-2xl text-primary uppercase tracking-wider group-hover:text-tertiary transition-colors">
             {name}
           </h4>
           {badge && (
-            <span className="inline-block text-[9px] sm:text-[10px] font-label-caps font-bold px-2.5 py-0.5 rounded-full bg-tertiary/10 text-tertiary border border-tertiary/20 shrink-0">
+            <span className="inline-block text-[9px] sm:text-[10px] font-label-caps font-bold px-2.5 py-0.5 rounded-full bg-tertiary/10 text-tertiary border border-tertiary/20">
               {badge}
             </span>
           )}
         </div>
 
-        {/* Right 50%: Dotted Leader & Price */}
-        <div className="flex items-center justify-end gap-2 text-right">
-          <div className="dotted-leader !border-tertiary/30 hidden sm:block"></div>
-          <span className="font-body-md text-lg sm:text-xl text-tertiary font-bold shrink-0">
-            {formattedPrice}
-          </span>
-        </div>
+        {/* Right: Price */}
+        <span className="font-body-md text-lg sm:text-xl text-tertiary font-bold shrink-0 pt-0.5">
+          {formattedPrice}
+        </span>
       </div>
 
       {/* Description */}
@@ -42,3 +39,4 @@ export default function MenuItem({ name, price, description, badge }) {
     </div>
   );
 }
+

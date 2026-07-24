@@ -18,12 +18,11 @@ export default function ChefRecommendationCard({ recommendation }) {
         </span>
       </div>
 
-      <div className="flex items-baseline justify-between mb-3 border-b border-tertiary/15 pb-2 flex-wrap sm:flex-nowrap gap-2">
+      <div className="flex items-baseline justify-between mb-3 border-b border-tertiary/15 pb-2 gap-2">
         <span className="font-menu-item text-lg sm:text-xl text-tertiary uppercase font-semibold">
           {recommendation.title}
         </span>
-        <div className="dotted-leader !border-tertiary/30 hidden sm:block"></div>
-        <span className="font-body-md text-lg sm:text-xl text-tertiary font-bold ml-auto sm:ml-0">
+        <span className="font-body-md text-lg sm:text-xl text-tertiary font-bold shrink-0">
           {formattedPrice}
         </span>
       </div>
