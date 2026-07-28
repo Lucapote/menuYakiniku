@@ -1,3 +1,8 @@
+import carrusel2 from '../assets/Carruseles-2.webp';
+import carrusel3 from '../assets/Carruseles-3.webp';
+import carrusel4 from '../assets/Carruseles-4.webp';
+import carrusel5 from '../assets/Carruseles-5.webp';
+
 export const RESTAURANT_INFO = {
   name: "Yamamoto",
   subtitle: "Restaurante Japonés",
@@ -20,7 +25,7 @@ export const MENU_DATA = [
   {
     id: "cortes",
     title: "Cortes",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuD6aR6Z9H6AGVA6suzNja3FyBR92pDzvCTCAOj4NEfGBZgfsSDz_eWurQ8mS0BtXIL2fN_SKj89ezAkTZ-fbgUxEPyvRBMtfF59-1b_IsfKj4DekCmq3pyOTz1qyVBj-Phot9QqUcV1fiAELlF9aIKaIAXy1Ew5--6gg5XF24I6QYF8rLGNkygDpbol5DPyFhuMqumGxHON8NlTGPaKagrvrfCdd0YX3xIQvU8scEYCxbcXDNQQht6EQqN5Hapv3teq9-zdmdjE6w",
+    images: [carrusel4, carrusel3],
     imageAlt: "Cortes de Res y Wagyu Yakiniku",
     imagePosition: "right",
     items: [
@@ -65,7 +70,7 @@ export const MENU_DATA = [
     id: "combinaciones",
     title: "Combinaciones",
     tagline: "Experiencia Yakiniku",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAMklsXK3YVlaoLHM3YHz9qAWSkOdDoGpq4yqEnBbJGn9v7dhRW_d3_ENa1ZcYpB51x9kNzNLBoET3h8pjkhkQxqNfAY6rWQJ1DK6teyFhl60DDAQIqk6ZgYdXE1XXAHeMQ2AmA86OYXib35BkTOW9k4tT6dHtvKW2g_2dqrzjSaTEQr5fpn8-btEsY3DPHvyjY9grl-m75KLDtiKjotpEugpGpcDF2Fxtld09lnIEXlO8jRy34HX1VuOmli5m79nuWvHitKrFD4w",
+    images: [carrusel2],
     imageAlt: "Combinaciones Yakiniku Yamamoto",
     imagePosition: "left",
     items: [
@@ -95,7 +100,7 @@ export const MENU_DATA = [
   {
     id: "vegetales",
     title: "Vegetales",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDaky7rw0ppWG51tqRbk86p1OT5QyoASSTJsZuEEqmt5h0TFbUBNwkcCSV-6Lgw9ZMyoS8pZreuBwrTU6CkiZrMdUmws2BnK89W_muNep3zEFAL45ygRww-SszAiz9cnICiYVW5zZXPKUkEDZTGJjV4m-qf6NBkjJcNE9JLEkkwpPxX6GtvWILdab9pbp1FZ4Ut5G9TY7tmZMBiO6OSTq7NLeep7qGIcTjFnUmxGTQyn5V65IxXpc1GqmgUHOqqZjsQg5ZXjPEueg",
+    images: [carrusel5],
     imageAlt: "Verduras mixtas para asar a la parrilla",
     imagePosition: "right",
     items: [
@@ -116,3 +121,4 @@ export const MENU_DATA = [
     ]
   }
 ];
+
