@@ -15,9 +15,11 @@ export default function IntroSection() {
       </div>
 
       {/* Philosophy quote */}
-      <p className="font-display-lg text-2xl sm:text-3xl md:text-4xl text-on-background italic leading-relaxed md:leading-relaxed font-normal mb-8">
-        "{RESTAURANT_INFO.introQuote}"
-      </p>
+      <div className="bg-white border border-tertiary/30 rounded-2xl p-6 sm:p-8 shadow-xs mb-8 w-full max-w-3xl transition-all duration-300 hover:border-tertiary/50">
+        <p className="font-display-lg text-xl sm:text-2xl md:text-3xl text-on-background italic leading-relaxed font-normal">
+          "{RESTAURANT_INFO.introQuote}"
+        </p>
+      </div>
 
       {/* Preparation Demonstration Video (Instagram 9:16 vertical ratio) */}
       <div className="w-full max-w-[260px] sm:max-w-[300px] aspect-[9/16] rounded-2xl overflow-hidden shadow-2xl border border-[#e0dad5]/80 bg-black">
