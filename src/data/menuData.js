@@ -8,7 +8,7 @@ export const RESTAURANT_INFO = {
   subtitle: "Restaurante Japonés",
   logoUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuCcwNPpMKOfnSGfHyT6iw0ww9Pm3TF_BE_Tfa_Bl85wp91JV15zDEutcM7_3gizX2UrT8Amd1leWm7v5B4W9oQKfNwtzuOH5El6SnD9_QO87NOS0qgPhWUSNjIgWSLpRNrQwHIXjZR6-uGwwnrmJUvIsCfPw4xhHth2psGyYCZpjcFRdldJhJuVzs5MHUwjrBANjYlvvOUFwUTP0_vtuMGomcQwcowAsH2J2Z9lFnRJazsenaXmDW-4zu6kjLTV5q-fofDBIJcuQA",
   tagline: "MENÚ YAKINIKU",
-  introQuote: "La mejor manera de comer la selección de carnes de Res, es como aquí te la sugerimos: asado a la parrilla en mesa dándole el término que cada uno prefiera.",
+  introQuote: "La mejor manera de comer la selección de Carnes Premium, es como aquí te la sugerimos: asado a la parrilla en mesa dándole el término que cada uno prefiera.",
   hours: "Lun - Dom: 13:00 hrs - 23:00 hrs",
   address: "Av. Principal #123, Ciudad de México",
   phone: "+52 (55) 1234-5678"
