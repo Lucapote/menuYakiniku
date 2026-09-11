@@ -2,6 +2,8 @@ import carrusel2 from '../assets/Carruseles-2.webp';
 import carrusel3 from '../assets/Carruseles-3.webp';
 import carrusel4 from '../assets/Carruseles-4.webp';
 import carrusel5 from '../assets/Carruseles-5.webp';
+import cortesNy from '../assets/cortes-yakiniku-2-ny.webp';
+import cortes3 from '../assets/cortes-yakiniku-3.webp';
 
 export const RESTAURANT_INFO = {
   name: "Yamamoto",
@@ -25,7 +27,7 @@ export const MENU_DATA = [
   {
     id: "cortes",
     title: "Cortes",
-    images: [carrusel4, carrusel3],
+    images: [carrusel4, carrusel3, cortesNy, cortes3],
     imageAlt: "Cortes de Res y Wagyu Yakiniku",
     imagePosition: "right",
     items: [

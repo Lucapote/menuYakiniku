@@ -3,6 +3,9 @@ import MenuItem from './MenuItem';
 
 function ImageCarousel({ images, alt }) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
 
   const imageList = Array.isArray(images) ? images : [images].filter(Boolean);
 
@@ -10,7 +13,7 @@ function ImageCarousel({ images, alt }) {
 
   if (imageList.length === 1) {
     return (
-      <div className="aspect-[4/3] overflow-hidden rounded-xl shadow-xl group border border-[#e0dad5]/60">
+      <div className="aspect-[4/3] overflow-hidden rounded-2xl shadow-lg border border-[#e0dad5]/60 group">
         <img
           src={imageList[0]}
           alt={alt}
@@ -21,70 +24,129 @@ function ImageCarousel({ images, alt }) {
     );
   }
 
-  const prevSlide = () => {
-    setCurrentIndex((prev) => (prev === 0 ? imageList.length - 1 : prev - 1));
+  const prevSlide = (e) => {
+    e?.stopPropagation();
+    if (currentIndex > 0) {
+      setCurrentIndex((prev) => prev - 1);
+    }
   };
 
-  const nextSlide = () => {
-    setCurrentIndex((prev) => (prev === imageList.length - 1 ? 0 : prev + 1));
+  const nextSlide = (e) => {
+    e?.stopPropagation();
+    if (currentIndex < imageList.length - 1) {
+      setCurrentIndex((prev) => prev + 1);
+    }
+  };
+
+  const handleTouchStart = (e) => {
+    setTouchStart(e.targetTouches[0].clientX);
+    setTouchEnd(e.targetTouches[0].clientX);
+    setIsDragging(true);
+  };
+
+  const handleTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!isDragging) return;
+    setIsDragging(false);
+    const distance = touchStart - touchEnd;
+    if (distance > 40 && currentIndex < imageList.length - 1) {
+      nextSlide();
+    } else if (distance < -40 && currentIndex > 0) {
+      prevSlide();
+    }
   };
 
   return (
-    <div className="space-y-3">
-      {/* Main Image Stage */}
-      <div className="relative aspect-[4/3] overflow-hidden rounded-xl shadow-xl group border border-[#e0dad5]/60 bg-black/5">
-        {imageList.map((img, idx) => (
-          <img
-            key={idx}
-            src={img}
-            alt={`${alt} ${idx + 1}`}
-            className={`absolute inset-0 w-full h-full object-cover transition-all duration-500 ease-out ${
-              idx === currentIndex ? 'opacity-100 scale-100 z-10' : 'opacity-0 scale-95 z-0'
-            }`}
-            loading="lazy"
-          />
-        ))}
-
-        {/* Previous Button */}
-        <button
-          type="button"
-          onClick={prevSlide}
-          aria-label="Imagen anterior"
-          className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-black/50 hover:bg-tertiary text-white flex items-center justify-center backdrop-blur-xs transition-all opacity-85 hover:opacity-100 cursor-pointer shadow-md"
+    <div className="space-y-3 select-none">
+      {/* Main Image Stage - Instagram Carousel Frame */}
+      <div
+        className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-xl border border-[#e0dad5]/80 bg-neutral-900 group"
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
+        {/* Horizontal Filmstrip Track (Instagram Style) */}
+        <div
+          className="flex w-full h-full transition-transform duration-300 ease-[cubic-bezier(0.25,1,0.5,1)]"
+          style={{ transform: `translateX(-${currentIndex * 100}%)` }}
         >
-          <span className="material-symbols-outlined text-xl">chevron_left</span>
-        </button>
+          {imageList.map((img, idx) => (
+            <div key={idx} className="w-full h-full flex-shrink-0 relative">
+              <img
+                src={img}
+                alt={`${alt} ${idx + 1}`}
+                className="w-full h-full object-cover"
+                loading="lazy"
+                draggable={false}
+              />
+            </div>
+          ))}
+        </div>
 
-        {/* Next Button */}
-        <button
-          type="button"
-          onClick={nextSlide}
-          aria-label="Siguiente imagen"
-          className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-black/50 hover:bg-tertiary text-white flex items-center justify-center backdrop-blur-xs transition-all opacity-85 hover:opacity-100 cursor-pointer shadow-md"
-        >
-          <span className="material-symbols-outlined text-xl">chevron_right</span>
-        </button>
+        {/* Instagram Top Right Counter Badge: "1/4" */}
+        <div className="absolute top-3 right-3 z-20 bg-black/65 backdrop-blur-md text-white text-[11px] font-semibold tracking-wider px-2.5 py-1 rounded-full border border-white/15 shadow-sm">
+          {currentIndex + 1}/{imageList.length}
+        </div>
 
-        {/* Counter Badge */}
-        <div className="absolute top-3 right-3 z-20 bg-black/60 backdrop-blur-md text-white text-[10px] font-label-caps px-2.5 py-1 rounded-full border border-white/20">
-          {currentIndex + 1} / {imageList.length}
+        {/* Instagram Left Arrow (hidden on first slide) */}
+        {currentIndex > 0 && (
+          <button
+            type="button"
+            onClick={prevSlide}
+            aria-label="Imagen anterior"
+            className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-white/85 hover:bg-white text-neutral-800 flex items-center justify-center backdrop-blur-sm transition-all duration-200 shadow-md hover:scale-110 cursor-pointer active:scale-95"
+          >
+            <span className="material-symbols-outlined text-lg leading-none font-bold">chevron_left</span>
+          </button>
+        )}
+
+        {/* Instagram Right Arrow (hidden on last slide) */}
+        {currentIndex < imageList.length - 1 && (
+          <button
+            type="button"
+            onClick={nextSlide}
+            aria-label="Siguiente imagen"
+            className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-white/85 hover:bg-white text-neutral-800 flex items-center justify-center backdrop-blur-sm transition-all duration-200 shadow-md hover:scale-110 cursor-pointer active:scale-95"
+          >
+            <span className="material-symbols-outlined text-lg leading-none font-bold">chevron_right</span>
+          </button>
+        )}
+
+        {/* Instagram Floating Dots (Bottom Overlay) */}
+        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10 shadow-sm">
+          {imageList.map((_, idx) => (
+            <button
+              key={idx}
+              type="button"
+              onClick={() => setCurrentIndex(idx)}
+              aria-label={`Ir a foto ${idx + 1}`}
+              className={`transition-all duration-300 rounded-full cursor-pointer ${
+                idx === currentIndex
+                  ? 'w-2.5 h-2.5 bg-tertiary scale-110'
+                  : 'w-1.5 h-1.5 bg-white/60 hover:bg-white'
+              }`}
+            />
+          ))}
         </div>
       </div>
 
-      {/* Thumbnails grid */}
-      <div className="grid grid-cols-2 gap-2.5">
+      {/* Instagram-Style Mini Thumbnails below */}
+      <div className="flex items-center justify-center gap-2 pt-1">
         {imageList.map((img, idx) => (
           <button
             key={idx}
             type="button"
             onClick={() => setCurrentIndex(idx)}
-            className={`aspect-[4/3] rounded-lg overflow-hidden border-2 transition-all duration-300 cursor-pointer ${
+            className={`relative w-14 sm:w-16 aspect-[4/3] rounded-lg overflow-hidden border-2 transition-all duration-200 cursor-pointer ${
               idx === currentIndex
-                ? 'border-tertiary shadow-md ring-2 ring-tertiary/20'
-                : 'border-transparent opacity-60 hover:opacity-100'
+                ? 'border-tertiary ring-2 ring-tertiary/30 scale-105 opacity-100 shadow-sm'
+                : 'border-transparent opacity-50 hover:opacity-90'
             }`}
           >
-            <img src={img} alt={`${alt} vista previa ${idx + 1}`} className="w-full h-full object-cover" />
+            <img src={img} alt={`Vista previa ${idx + 1}`} className="w-full h-full object-cover" />
           </button>
         ))}
       </div>
